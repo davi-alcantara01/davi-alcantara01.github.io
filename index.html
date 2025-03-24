@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>placar</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+        <div id="tatami"><span>TATAMI 0</span></div>
+        <div id="timer"><div id="timer-value"><span id="minutes">0</span>:<span id="seconds">02</span></div></div>
+        <div id="container-points">
+            <div class="senshu" id="blue-senshu"></div>
+            <div class="points" id="blue-point">0</div>
+            <div class="points" id="red-point">0</div>
+            <div class="senshu" id="red-senshu"></div>
+        </div>
+        <div id="container-fault">
+            <div id="blue-fault">
+                <div class="fault"></div>
+                <div class="fault"></div>
+                <div class="fault"></div>
+                <div class="fault"></div>
+                <div class="fault" id="expelled-blue"></div>
+            </div>
+            <div id="red-fault">
+                <div class="fault"></div>
+                <div class="fault"></div>
+                <div class="fault"></div>
+                <div class="fault"></div>
+                <div class="fault" id="expelled-red"></div>
+            </div>
+
+        </div>
+        <div id="container-type">
+            <div id="blue-type">
+                <div class="type">1C</div>
+                <div class="type">2C</div>
+                <div class="type">3C</div>
+                <div class="type">HC</div>
+                <div class="type">H</div>
+            </div>
+            <div id="red-type">
+                <div class="type">1C</div>
+                <div class="type">2C</div>
+                <div class="type">3C</div>
+                <div class="type">HC</div>
+                <div class="type">H</div>
+            </div>
+
+        </div>
+    </main>
+</body>
+<script src="index.js"></script>
+</html>
