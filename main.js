@@ -6,6 +6,8 @@ app.whenReady().then(() => {
     mainWindow = new BrowserWindow({
         fullscreen: false,
         maximizable: true,
+        resizable: false,
+        frame: false,
         webPreferences: {
             nodeIntegration: true
         }

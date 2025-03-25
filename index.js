@@ -1,3 +1,13 @@
+/*Variaveis*/
+let idMinutes = document.getElementById("minutes");
+let idSeconds = document.getElementById("seconds");
+let bluePoints = document.getElementById("blue-point");
+let redPoints = document.getElementById("red-point");
+let blueSenshu = document.getElementById("blue-senshu");
+let redSenshu = document.getElementById("red-senshu");
+let control = false;
+let end = false;
+
 function win(winner){
     try{clearInterval(runtimer);}
     catch(erro){
@@ -9,7 +19,7 @@ function win(winner){
     else if(winner == "red"){
         redPoints.style.animation = "blink 1s infinite";
     }
-}
+};
 
 function draw(){
     try{clearInterval(runtimer);}
@@ -18,7 +28,7 @@ function draw(){
     }
     bluePoints.style.animation = "blink 1s infinite";
     redPoints.style.animation = "blink 1s infinite";
-}
+};
 
 function timer(minutes, seconds){
 
@@ -50,16 +60,52 @@ function timer(minutes, seconds){
     )
     
 };
-let idMinutes = document.getElementById("minutes");
-let idSeconds = document.getElementById("seconds");
-let control = false;
-let end = false;
-let bluePoints = document.getElementById("blue-point");
-let redPoints = document.getElementById("red-point");
-let blueSenshu = document.getElementById("blue-senshu");
-let redSenshu = document.getElementById("red-senshu");
+
+/*configura o numero do tatami*/
+document.getElementById("tatami-number").addEventListener(
+    "click", function(){
+        let div = this;
+        let tatamiReset = "0";
+
+        let input = document.createElement("input");
+        input.type = "number";
+        input.value = tatamiReset;
+        input.style.width = "2.5vw";
+        input.style.fontSize = "0.6em";
+        input.style.position = "absolute";
+        input.style.top = "0.75%"
+        input.max = "9";
+        input.min = "00";
+        input.maxLength = "2";
 
 
+        div.replaceWith(input);
+        input.focus();
+
+        document.querySelector("input").addEventListener("input", function(){
+            if (this.value.length > 1) {
+                this.value = this.value.slice(0, 1);
+            }
+        });
+
+        input.addEventListener("blur", function() {
+            if (this.value == "" || this.value =="0"){
+                this.value = "0";
+            };
+
+            div.innerText = input.value;
+            input.replaceWith(div);
+        });
+
+        input.addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                input.blur();
+            }
+        });
+    }
+);
+
+/*Função do Enter no timer*/
 window.addEventListener("keydown", function(event){
     if(event.code == "Space"){
         if (control == false) {
@@ -76,7 +122,7 @@ window.addEventListener("keydown", function(event){
 
 });
 
-
+/*Editor dos Minutos*/
 document.getElementById("minutes").addEventListener(
     "click", function(){
         let div = this;
@@ -122,7 +168,7 @@ document.getElementById("minutes").addEventListener(
     }
 );
 
-
+/*Editor dos segundos*/
 document.getElementById("seconds").addEventListener(
     "click", function(){
         let div = this;
@@ -165,8 +211,9 @@ document.getElementById("seconds").addEventListener(
             }
         });
     }
-)
+);
 
+/*Remove os pontos*/
 document.querySelectorAll(".points").forEach(element => {
     element.addEventListener(
         "contextmenu", function(event){
@@ -180,8 +227,9 @@ document.querySelectorAll(".points").forEach(element => {
             
         }
     )
-})
+});
 
+/*Adiciona os pontos*/
 document.querySelectorAll(".points").forEach(element => {
     element.addEventListener(
         "click", function(){
@@ -191,9 +239,9 @@ document.querySelectorAll(".points").forEach(element => {
             num = 0;
         }
     )
-})
+});
 
-
+/*Configura as faltas*/
 document.querySelectorAll(".fault").forEach(element => {
     element.addEventListener(
         "click", function(){
@@ -207,8 +255,9 @@ document.querySelectorAll(".fault").forEach(element => {
     )
 }
 
-)
+);
 
+/*configura o senshu*/
 document.querySelectorAll(".senshu").forEach(element => {
     element.addEventListener(
         "click", function(){
@@ -220,7 +269,7 @@ document.querySelectorAll(".senshu").forEach(element => {
             }
         }
     )
-})
+});
 
 /*Reseta as configurações padrões ao clicar 'Esc'*/
 window.addEventListener("keydown", function(event){
@@ -243,11 +292,11 @@ window.addEventListener("keydown", function(event){
         redPoints.style.animation = "";
         blueSenshu.style.backgroundColor ="black";
         redSenshu.style.backgroundColor ="black";
+        document.getElementById("tatami-number").innerText = "0";
 
 
     }
 });
-
 
 /*Verifica quem venceu*/
 setInterval(() => {
@@ -292,5 +341,4 @@ setInterval(() => {
     }
 }, 250
 
-)
-
+);
